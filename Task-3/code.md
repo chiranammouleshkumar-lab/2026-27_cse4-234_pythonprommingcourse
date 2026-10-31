@@ -36,120 +36,6 @@ The program should:
 
 ## 3. Flowchart
 ```mermaid
-# Courier Charge Optimization – Python Program
-
-## 1. Problem Statement
-
-Develop a Python program to calculate courier delivery charges based on parcel weight, dimensions, distance zones, delivery urgency, and declared restrictions.
-
-The program should:
-
-- Accept parcel weight, length, width, and height.
-- Calculate actual weight and volumetric weight.
-- Determine delivery charges based on distance zones.
-- Apply additional charges for urgent delivery.
-- Check restrictions such as fragile, liquid, and prohibited items.
-- Compare different courier service options.
-- Select the most economical eligible courier service.
-- Display the final delivery charge and selected service.
-
-## 2. Algorithm
-
-1. Start the program.
-2. Enter parcel weight, length, width, and height.
-3. Calculate volumetric weight using:
-
-\\[ \text{Volumetric Weight} = \frac{L \times W \times H}{5000} \\]
-
-4. Calculate chargeable weight by selecting the maximum of actual weight and volumetric weight.
-5. Enter the distance zone (Local, Regional, National).
-6. Enter delivery urgency (Normal or Express).
-7. Enter parcel restrictions (Fragile, Liquid, Prohibited).
-8. Check whether the parcel is eligible for delivery.
-9. Calculate charges for different courier services.
-10. Compare the eligible courier charges.
-11. Select the courier with the lowest delivery charge.
-12. Display all courier options and the best option.
-13. Stop.
-
-## 3. Flowchart
-```mermaid
-# Courier Charge Optimization – Python Program
-
-## 1. Problem Statement
-
-Develop a Python program to calculate courier delivery charges based on parcel weight, dimensions, distance zones, delivery urgency, and declared restrictions.
-
-The program should:
-
-- Accept parcel weight, length, width, and height.
-- Calculate actual weight and volumetric weight.
-- Determine delivery charges based on distance zones.
-- Apply additional charges for urgent delivery.
-- Check restrictions such as fragile, liquid, and prohibited items.
-- Compare different courier service options.
-- Select the most economical eligible courier service.
-- Display the final delivery charge and selected service.
-
-## 2. Algorithm
-
-1. Start the program.
-2. Enter parcel weight, length, width, and height.
-3. Calculate volumetric weight using:
-
-\\[ \text{Volumetric Weight} = \frac{L \times W \times H}{5000} \\]
-
-4. Calculate chargeable weight by selecting the maximum of actual weight and volumetric weight.
-5. Enter the distance zone (Local, Regional, National).
-6. Enter delivery urgency (Normal or Express).
-7. Enter parcel restrictions (Fragile, Liquid, Prohibited).
-8. Check whether the parcel is eligible for delivery.
-9. Calculate charges for different courier services.
-10. Compare the eligible courier charges.
-11. Select the courier with the lowest delivery charge.
-12. Display all courier options and the best option.
-13. Stop.
-
-## 3. Flowchart
-```mermaid
-# Courier Charge Optimization – Python Program
-
-## 1. Problem Statement
-
-Develop a Python program to calculate courier delivery charges based on parcel weight, dimensions, distance zones, delivery urgency, and declared restrictions.
-
-The program should:
-
-- Accept parcel weight, length, width, and height.
-- Calculate actual weight and volumetric weight.
-- Determine delivery charges based on distance zones.
-- Apply additional charges for urgent delivery.
-- Check restrictions such as fragile, liquid, and prohibited items.
-- Compare different courier service options.
-- Select the most economical eligible courier service.
-- Display the final delivery charge and selected service.
-
-## 2. Algorithm
-
-1. Start the program.
-2. Enter parcel weight, length, width, and height.
-3. Calculate volumetric weight using:
-
-\\[ \text{Volumetric Weight} = \frac{L \times W \times H}{5000} \\]
-
-4. Calculate chargeable weight by selecting the maximum of actual weight and volumetric weight.
-5. Enter the distance zone (Local, Regional, National).
-6. Enter delivery urgency (Normal or Express).
-7. Enter parcel restrictions (Fragile, Liquid, Prohibited).
-8. Check whether the parcel is eligible for delivery.
-9. Calculate charges for different courier services.
-10. Compare the eligible courier charges.
-11. Select the courier with the lowest delivery charge.
-12. Display all courier options and the best option.
-13. Stop.
-
-## 3. Flowchart
-```mermaid
 
 flowchart TD
     A([Start]) --> B[/Enter parcel weight and dimensions/]
@@ -183,6 +69,9 @@ flowchart TD
 
     R --> Z
     T --> Z
+
+
+
 ```
 
 ## 4. Python Source Code
