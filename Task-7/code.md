@@ -1,3 +1,4 @@
+# Water Distribution Fairness Analysis
 
 ## 1. Problem Statement
 
@@ -44,6 +45,8 @@ flowchart TD
     style I fill:#FFD580
     style J fill:#ADD8E6
 ```
+
+
 
 
 ## 4. Python Source Code
@@ -104,6 +107,11 @@ Highest Shortage Percentage: 26.67 %
 
 Analysis Completed.
 ```
+
+
+
+
+
 
 ## 7. Mermaid Flowchart Code
 <img src"<img width="574" height="1916" alt="mermaid-diagram (6)" src="https://github.com/user-attachments/assets/61d977a8-2f4a-4377-9e69-dedf820f02b2" />
