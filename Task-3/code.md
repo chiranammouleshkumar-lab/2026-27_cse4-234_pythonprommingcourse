@@ -1,128 +1,131 @@
-# Courier Charge Optimization – Python Program
 
-## 1. Problem Statement
+# Courier Charge Optimization
 
-Develop a Python program to calculate courier delivery charges based on parcel weight, dimensions, distance zones, delivery urgency, and declared restrictions.
+print("===================================")
+print("     COURIER CHARGE OPTIMIZATION")
+print("===================================")
 
-The program should:
+# Input parcel details
+weight = float(input("Enter parcel weight (kg): "))
 
-- Accept parcel weight, length, width, and height.
-- Calculate actual weight and volumetric weight.
-- Determine delivery charges based on distance zones.
-- Apply additional charges for urgent delivery.
-- Check restrictions such as fragile, liquid, and prohibited items.
-- Compare different courier service options.
-- Select the most economical eligible courier service.
-- Display the final delivery charge and selected service.
+length = float(input("Enter length (cm): "))
+width = float(input("Enter width (cm): "))
+height = float(input("Enter height (cm): "))
 
-## 2. Algorithm
+# Calculate volumetric weight
+volumetric_weight = (length * width * height) / 5000
 
-1. Start the program.
-2. Enter parcel weight, length, width, and height.
-3. Calculate volumetric weight using:
+# Calculate chargeable weight
+chargeable_weight = max(weight, volumetric_weight)
 
-\\[ \text{Volumetric Weight} = \frac{L \times W \times H}{5000} \\]
+print("\nActual Weight:", weight, "kg")
+print("Volumetric Weight:", round(volumetric_weight, 2), "kg")
+print("Chargeable Weight:", round(chargeable_weight, 2), "kg")
 
-4. Calculate chargeable weight by selecting the maximum of actual weight and volumetric weight.
-5. Enter the distance zone (Local, Regional, National).
-6. Enter delivery urgency (Normal or Express).
-7. Enter parcel restrictions (Fragile, Liquid, Prohibited).
-8. Check whether the parcel is eligible for delivery.
-9. Calculate charges for different courier services.
-10. Compare the eligible courier charges.
-11. Select the courier with the lowest delivery charge.
-12. Display all courier options and the best option.
-13. Stop.
+# Distance zone
+print("\nDistance Zones:")
+print("1. Local")
+print("2. Regional")
+print("3. National")
 
-## 3. Flowchart
-```mermaid
+zone = int(input("Select distance zone (1-3): "))
 
-flowchart TD
-    A([Start]) --> B[/Enter parcel weight and dimensions/]
-    B --> C[Calculate volumetric weight]
-    C --> D[Calculate chargeable weight]
-    D --> E[/Select distance zone/]
-    E --> F[/Select delivery urgency/]
-    F --> G[/Enter parcel restrictions/]
-    G --> H{Is parcel prohibited?}
+zone_rates = {
+    1: 40,
+    2: 70,
+    3: 100
+}
 
-    H -->|Yes| I[Reject parcel]
-    I --> Z([Stop])
+if zone not in zone_rates:
+    print("Invalid distance zone!")
+    exit()
 
-    H -->|No| J[Calculate additional charges]
-    J --> K[Compare courier services]
-    K --> L{Service eligible?}
+# Delivery urgency
+print("\nDelivery Options:")
+print("1. Normal")
+print("2. Express")
 
-    L -->|No| M[Skip courier service]
-    M --> K
+urgency = int(input("Select urgency (1-2): "))
 
-    L -->|Yes| N[Calculate delivery charge]
-    N --> O[Store courier and charge]
-    O --> P{More services?}
+if urgency not in [1, 2]:
+    print("Invalid urgency!")
+    exit()
 
-    P -->|Yes| K
-    P -->|No| Q{Any eligible service?}
+urgent_charge = 50 if urgency == 2 else 0
 
-    Q -->|No| R[Display no service available]
-    Q -->|Yes| S[Select minimum charge]
-    S --> T[Display best courier and charge]
+# Parcel restrictions
+print("\nParcel Restrictions:")
+print("1. Normal")
+print("2. Fragile")
+print("3. Liquid")
+print("4. Prohibited")
 
-    R --> Z
-    T --> Z
+restriction = int(input("Select restriction (1-4): "))
 
+if restriction not in [1, 2, 3, 4]:
+    print("Invalid restriction!")
+    exit()
 
+if restriction == 4:
+    print("\nParcel cannot be delivered!")
+    exit()
 
-```
+# Restriction charges
+restriction_charge = 30 if restriction == 2 else 20 if restriction == 3 else 0
 
-## 4. Python Source Code
+# Courier service rates per kg
+couriers = {
+    "Fast Express": 50,
+    "Speed Courier": 40,
+    "Budget Delivery": 30
+}
 
-```
-# Courier Charge Optimizationprint("===================================")print("     COURIER CHARGE OPTIMIZATION")print("===================================")# Input parcel detailsweight = float(input("Enter parcel weight (kg): "))length = float(input("Enter length (cm): "))width = float(input("Enter width (cm): "))height = float(input("Enter height (cm): "))# Calculate volumetric weightvolumetric_weight = (length * width * height) / 5000# Calculate chargeable weightchargeable_weight = max(weight, volumetric_weight)print("\nActual Weight:", weight, "kg")print("Volumetric Weight:", round(volumetric_weight, 2), "kg")print("Chargeable Weight:", round(chargeable_weight, 2), "kg")# Distance zoneprint("\nDistance Zones:")print("1. Local")print("2. Regional")print("3. National")zone = int(input("Select distance zone (1-3): "))zone_rates = {    1: 40,    2: 70,    3: 100
-```
+print("\n========== COURIER COMPARISON ==========")
 
-## 5. Sample Input
+eligible_services = []
 
-```
-Enter parcel weight (kg): 2
+for name, rate in couriers.items():
 
-Enter length (cm): 30
-Enter width (cm): 20
-Enter height (cm): 15
+    # Maximum parcel weight limits
+    if name == "Budget Delivery" and restriction == 2:
+        print(name, "- Not eligible for fragile parcels")
+        continue
 
-Select distance zone (1-3): 2
+    if name == "Speed Courier" and restriction == 3:
+        print(name, "- Not eligible for liquid parcels")
+        continue
 
-Select urgency (1-2): 2
+    if chargeable_weight > 20:
+        print(name, "- Not eligible (Weight limit exceeded)")
+        continue
 
-Select restriction (1-4): 2
-```
+    # Calculate delivery charge
+    base_charge = zone_rates[zone]
 
-## 6. Sample Output
+    weight_charge = chargeable_weight * rate
 
-```
-===================================
-     COURIER CHARGE OPTIMIZATION
-===================================
+    total_charge = (
+        base_charge
+        + weight_charge
+        + urgent_charge
+        + restriction_charge
+    )
 
-Actual Weight: 2.0 kg
-Volumetric Weight: 1.8 kg
-Chargeable Weight: 2.0 kg
+    eligible_services.append((name, total_charge))
 
-========== COURIER COMPARISON ==========
+    print(name, "- Rs.", round(total_charge, 2))
 
-Fast Express - Rs. 250.0
-Speed Courier - Rs. 230.0
-Budget Delivery - Not eligible for fragile parcels
+# Select the cheapest eligible courier
+print("\n========== FINAL RESULT ==========")
 
-========== FINAL RESULT ==========
+if eligible_services:
 
-Selected Courier: Speed Courier
-Minimum Delivery Charge: Rs. 230.0
+    best = min(eligible_services, key=lambda x: x[1])
 
-Thank you for using our system!
-```
+    print("Selected Courier:", best[0])
+    print("Minimum Delivery Charge: Rs.", round(best[1], 2))
 
-## 7. Mermaid Flowchart Code
-<img src="<img width="1858" height="2794" alt="mermaid-diagram (2)" src="https://github.com/user-attachments/assets/04c0b608-68ac-42b0-8c88-2b1baa2a5d92" />
+else:
+    print("No eligible courier service available.")
 
-
-
+print("\nThank you for using our system!")
